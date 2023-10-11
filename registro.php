@@ -41,7 +41,7 @@ if(isset($guardar)) {
             }
 
             if(empty($trabajo)) {
-                $errores['trabajo'][] = 'Esta vacío un campo.';
+                $errores['trabajo'][] = 'Tienes que introducir el ';
             }
 
             if($baja < $alta) {
@@ -88,37 +88,62 @@ if(isset($guardar)) {
     <meta charset="UTF-8">  
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="registro.css">
     <title>Nuevo Registro de Trabajo</title>
 </head>
 
 <body>
-    <h1>Nuevo Registro de Trabajo</h1>
-    <form method="POST" action="">
-    <h2> Introduce el nombre del nuevo trabajo: </h2>
-            <label>
-                <input type="text" name="trabajo" value="<?= $trabajo ?>">
-                <?php foreach ($errores['trabajo'] as $err): ?>
-                        <p>¡Error!</span> <?= $err ?></p>
-                <?php endforeach ?>
-            </label>
-        <h2> Fecha de alta: </h2>
-            <label>
-                <input type="date" name="alta" value="<?= $alta ?>">
-                <?php foreach ($errores['alta'] as $err): ?>
-                        <p>¡Error!</span> <?= $err ?></p>
-                <?php endforeach ?>
-            </label>
-         <h2> Fecha de baja: </h2>
-            <label>
-                <input type="date" name="baja" value="<?= $baja ?>">
-                <?php foreach ($errores['baja'] as $err): ?>
-                        <p>¡Error!</span> <?= $err ?></p>
-                <?php endforeach ?>
-            </label>
-            <label>
-                <input type="submit" value="guardar" name="guardar"></input>
-            </label>
-    </form>
+    <div class="inicio">
+        
+        <ul> 
+            <a href="index.php"> 
+                Inicio 
+            </a>
+        </ul>
+
+        <ul> 
+            <a href="perfil.php"> 
+                Perfil 
+            </a>
+        </ul>
+
+        <ul> 
+            <a> 
+                Contacto 
+            </a>
+        </ul>
+        
+    </div>
+    <div class="formulario">
+        <h1>Nuevo Registro:</h1>
+        <form method="POST" action="">
+        <h2> Introduce el nombre del nuevo registro: </h2>
+                <label>
+                    <input type="text" name="trabajo" value="<?= $trabajo ?>">
+                    <?php foreach ($errores['trabajo'] as $err): ?>
+                            <p>¡Error!</span> <?= $err ?></p>
+                    <?php endforeach ?>
+                </label>
+            <h2> Fecha de alta: </h2>
+                <label>
+                    <input type="date" name="alta" value="<?= $alta ?>">
+                    <?php foreach ($errores['alta'] as $err): ?>
+                            <p>¡Error!</span> <?= $err ?></p>
+                    <?php endforeach ?>
+                </label>
+            <h2> Fecha de baja: </h2>
+                <label>
+                    <input type="date" name="baja" value="<?= $baja ?>">
+                    <?php foreach ($errores['baja'] as $err): ?>
+                            <p>¡Error!</span> <?= $err ?></p>
+                    <?php endforeach ?>
+                </label>
+                <br>
+                <label>
+                    <input type="submit" value="guardar" name="guardar" class="boton"></input>
+                </label>
+        </form>
+    </div>
 
 
     
