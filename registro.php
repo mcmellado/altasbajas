@@ -23,6 +23,7 @@ if (isset($_SESSION['fila'])) {
 $id_usuario = obtener_get("id");
 
 
+
 if(isset($guardar)) {
 
     if(isset($alta, $baja, $trabajo)) {
@@ -39,11 +40,11 @@ if(isset($guardar)) {
                 $errores['trabajo'][] = 'Demasiado largo.';
             }
 
-            if($trabajo == "") {
+            if(empty($trabajo)) {
                 $errores['trabajo'][] = 'Esta vacío un campo.';
             }
 
-            if($baja > $alta) {
+            if($baja < $alta) {
                 $errores['baja'][] = 'No es una fecha de baja válida.';
             }
 
@@ -75,7 +76,6 @@ if(isset($guardar)) {
 
     }
 }
-
 
 
 
