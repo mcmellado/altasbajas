@@ -52,16 +52,22 @@ function comprobar($login, $password_login){
 
     if(pg_num_rows($comprobar_login) != 0){
 
-        $fila           = pg_fetch_array($comprobar_login, 0);
-        $usuario        = $fila['usuario'];
-        $password       = $fila['password'];
-    
+        $datos_usuario = array(
+            "usuario"            => $fila['usuario'],
+            "password"           => $fila['password'],
+            "intentos_fallidos"  => $fila['intentos_fallidos'],
+            "bloqueo"            => $fila['bloqueo'],
+            "fecha_nac"          => $fila['fecha_nacimiento'],
+            "alta"               => $fila['alta'],
+            "baja"               => $fila['baja'],
+        );
+
         if($password == $password_login) {
-            $_SESSION['fila'] = serialize($fila);
+            $_SESSION['datos_usuario'] = $datos_usuario;
             header('Location: index.php');
 
         } else {
-            echo "La contraseña es incorrecta";
+            echo "El usuario o contraseña es incorrecto";
         }
 
     } else {
@@ -74,5 +80,4 @@ if(isset($login, $password_login)){
 }
 
 ?>
-
 
