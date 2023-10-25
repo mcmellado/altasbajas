@@ -137,6 +137,23 @@ html {
     height: 30px;
 }
 
+.container {
+        display: flex;
+        grid-gap: 3px;
+        left: 812px;
+        top: 164px;
+        position: relative;
+        color: red;
+    }
+
+.div1, .div2 {
+    height: 50px;
+}
+
+
+
+
+
 
 
 
