@@ -3,9 +3,8 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if (isset($_SESSION['fila'])) {
-    $filaSerializada = $_SESSION['fila'];
-    $fila = unserialize($filaSerializada);
+if (isset($_SESSION['datos_usuario'])) {
+    $datos_usuario = $_SESSION['datos_usuario'];
 }
 
 $diasFestivosCadiz = [
@@ -24,13 +23,13 @@ $diasFestivosCadiz = [
     '2023-12-25'  // Navidad
 ];
 
-$fechaAlta = DateTime::createFromFormat('d/m/Y', $fila['alta']);
-$fechaBaja = DateTime::createFromFormat('d/m/Y', $fila['baja']);
+$fechaAlta = DateTime::createFromFormat('d/m/Y', $datos_usuario['alta']);
+$fechaBaja = DateTime::createFromFormat('d/m/Y', $datos_usuario['baja']);
 if(!$fechaBaja) {
     $fechaBaja = DateTime::createFromFormat('d/m/Y', date('d/m/Y'));
 }
 
-$fechaNacimiento = DateTime::createFromFormat('d/m/Y', $fila['fecha_nacimiento']);
+$fechaNacimiento = DateTime::createFromFormat('d/m/Y', $datos_usuario['fecha_nac']);
 
 
 $diasCotizados = 0;
@@ -68,7 +67,7 @@ if (!$fechaAlta || !$fechaBaja || !$fechaNacimiento) {
     exit("Error al procesar las fechas");
 }
 
-$_SESSION['fila'] = serialize($fila);
+$_SESSION['datos_usuario'] = $datos_usuario;
 
 ?>
 
@@ -108,8 +107,8 @@ $_SESSION['fila'] = serialize($fila);
 </div>
 
     <div class="parrafo_inicio">
-        <?php if (isset($fila) && is_array($fila)) : ?>
-            <h1> ¡Bienvenido, <?= $fila['nombre'] ?>! </h1>
+        <?php if (isset($datos_usuario) && is_array($datos_usuario)) : ?>
+            <h1> ¡Bienvenido, <?= $datos_usuario['usuario'] ?>! </h1>
             <h2> Has cotizado <?= $aniosCotizados ?> años, <?= $mesesCotizados ?> meses y <?= $diasCotizados ?> días </h2>
             <p>Este cómputo de periodos se ha realizado considerando que las correspondientes cotizaciones han sido ingresadas. </p>
             <div class="linea-horizontal"></div>
